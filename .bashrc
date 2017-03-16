@@ -163,3 +163,7 @@ mcd () {
     mkdir -p $1
     cd $1
 }
+
+# Pretty-print of some PATH variables:
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
