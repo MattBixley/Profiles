@@ -94,6 +94,8 @@ alias l='ls -CF'
 alias brc="nano ~/.bashrc && source ~/.bashrc"
 alias ..='cd ..'
 
+# ssh to nesi
+alias sshn="ssh -Y matt.bixley@lander02.nesi.org.nz"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
