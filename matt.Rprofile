@@ -1,7 +1,4 @@
 ### matt.Rprofile
-local({r <- getOption("repos")
-      r["CRAN"] <- "http://cran.stat.auckland.ac.nz/"
-      options(repos=r)})
 
 #############
 ## OPTIONS ##
@@ -38,9 +35,6 @@ utils::rc.settings(ipck=TRUE)
   }
 }
 
-# get pretty output colors in the terminal
-if(Sys.getenv("TERM") == "xterm-256color")
-  library("colorout")
 
 # get noisy package imports to shut up
 #   we have to jump through hoops to get the
@@ -125,15 +119,6 @@ options(continue="...+ ")
 # tab-complete package names
 utils::rc.settings(ipck=TRUE)
 
-.First <- function(){
-  if(interactive()){
-    library(utils)
-    # puts a timestamp in my command history
-    # file if R_HISTFILE is in environment
-    timestamp(,prefix=paste("##------ [",getwd(),"] ",sep=""))
-  }
-}
-
 ## .First() run at the start of every R session. 
 ## Use to load commonly used packages? 
 .First <- function() {
@@ -145,27 +130,6 @@ utils::rc.settings(ipck=TRUE)
         # save command history here?
         cat("\nGoodbye at ", date(), "\n")
 }
-
-
-.toggle <- function(){
-  # Assumes you are in user mode if first time running in session
-  rstudioTeachMode_options <-  getOption("rstudioTeachMode")
-  if (is.null(rstudioTeachMode_options)) rstudioTeachMode_options <- list(mode = "user")
-  # teach -> user
-  if (rstudioTeachMode_options$mode == "teach") {
-    # select what you want your user settings to be here
-    rstudioapi::writeRStudioPreference("font_size_points", 11L) # number has to be integer
-    rstudioapi::applyTheme("Cobalt")
-  } else {# user -> teach
-    # select what you want your teaching settings to be
-    rstudioapi::writeRStudioPreference("font_size_points", 24L) # number has to be integer
-    rstudioapi::applyTheme("Chrome")
-  }
-  # flip the mode in the stored options
-  rstudioTeachMode_options$mode <- ifelse(rstudioTeachMode_options$mode == "teach", "user", "teach")
-  options(rstudioTeachMode = rstudioTeachMode_options)
-}
-
 
 .toggle <- function(){
   # Assumes you are in user mode if first time running in session
